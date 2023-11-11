@@ -4,7 +4,6 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 
-
 const fruits = [
   {
     id: 1,
@@ -15,7 +14,6 @@ const fruits = [
     name: "mango",
   },
 ];
-
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -33,16 +31,13 @@ app.delete("/cart", (req, res) => {
   res.send("DELETE request at /cart");
 });
 
-
 app.get("/items/:id", (req, res) => {
   res.json(req.params);
 });
 
-
 app.post("/register", (req, res) => {
   res.json(req.body);
 });
-
 
 app.get("/fruits", (req, res) => {
   res.json(fruits);
@@ -98,7 +93,6 @@ app.delete("/fruits/:id", function (req, res) {
     res.status(404).send("Fruit not found");
   }
 });
-
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

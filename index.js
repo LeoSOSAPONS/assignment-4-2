@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 
-//Data
+
 const fruits = [
   {
     id: 1,
@@ -16,7 +16,7 @@ const fruits = [
   },
 ];
 
-//Basic Routes
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -33,24 +33,21 @@ app.delete("/cart", (req, res) => {
   res.send("DELETE request at /cart");
 });
 
-//Route Paramters
+
 app.get("/items/:id", (req, res) => {
   res.json(req.params);
 });
 
-//Request Body
+
 app.post("/register", (req, res) => {
   res.json(req.body);
 });
 
-//REST routes
 
-//GET /fruits
 app.get("/fruits", (req, res) => {
   res.json(fruits);
 });
 
-//GET /fruits/:id
 app.get("/fruits/:id", (req, res) => {
   for (let fruit of fruits) {
     console.log(req.params.id);
@@ -63,7 +60,6 @@ app.get("/fruits/:id", (req, res) => {
   res.send("Fruit not found");
 });
 
-//POST /fruits
 app.post("/fruits", function (req, res) {
   if (fruits.length > 0 && fruits.some((f) => f.name === req.body.name)) {
     res.status(409);
@@ -78,7 +74,6 @@ app.post("/fruits", function (req, res) {
   res.json(newFruit);
 });
 
-//PUT /fruits/:id
 app.put("/fruits/:id", function (req, res) {
   for (let fruit of fruits) {
     if (fruit.id == req.params.id) {
@@ -90,9 +85,7 @@ app.put("/fruits/:id", function (req, res) {
   res.status(404);
   res.send("Fruit not found");
 });
-// ...
 
-// DELETE /fruits/:id
 app.delete("/fruits/:id", function (req, res) {
   const idToDelete = parseInt(req.params.id, 10);
 
@@ -106,8 +99,6 @@ app.delete("/fruits/:id", function (req, res) {
   }
 });
 
-//Assignment - Implement the delete endpoint
-//End code here.
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
